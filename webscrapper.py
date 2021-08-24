@@ -17,6 +17,7 @@ def jiji(msg_received):
         product=str(msg_received["product"]).replace(" ","%20")
         sort=msg_received["filter"]
         amount=msg_received["amount"]
+        time=msg_received["time"]
 
     except KeyError:
         return {"Error":"A key is missing"}
@@ -42,15 +43,26 @@ def jiji(msg_received):
     if not str(amount).isdigit() or int(amount)<=0:
         amount=1
 
+    if time == "day" or "d":
+        time="day"
+    elif time == "hour" or "h":
+        time="hour"
+    elif time == "all" or "a":
+        time=""
+    else:
+        time="hour"
 
-    driver.get('https://jiji.co.ke/search?query='+product+'&sort='+fil+'&period=hour')
+
+    driver.get('https://jiji.co.ke/search?query='+product+'&sort='+fil+'&period='+time)
 
 
     adverts = driver.find_elements_by_class_name("b-list-advert__wrapper")
 
+    if len(adverts)==0:
+        return {"Notification":"product not found"}
     #while len(adverts)< 20:
     q=0
-    while q < 10:
+    while q < 5:
         driver.find_element_by_css_selector("input[type='text']").send_keys(Keys.PAGE_DOWN)
         adverts = driver.find_elements_by_class_name("b-list-advert__wrapper")
         time.sleep(2)
@@ -92,7 +104,7 @@ def jiji(msg_received):
                 product=str(el.get_attribute("href"))
                 driver2 = webdriver.Chrome(executable_path=exePath, options=chrome_options)
                 driver2.get(product)
-                time.sleep(5)
+                time.sleep(3)
 
                 title = str(driver2.find_element_by_xpath('//div[@class="b-advert-title-inner qa-advert-title b-advert-title-inner--h1"]').get_attribute("innerHTML")).strip()
 

@@ -10,7 +10,7 @@ req.add_header('Content-Type', 'application/json; charset=utf-8')
 
 
 #print(submitInvoice.submitInvoice(payload))
-x={"product":"iphone black","filter":"r","amount":"3"}
+x={"product":"iphone","filter":"n","amount":"5","time":"d"}
 
 body2=json.dumps(x)
 jsondata=body2.encode('utf-8')
