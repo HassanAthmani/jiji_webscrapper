@@ -23,7 +23,7 @@ def jiji(msg_received):
 
 
     #exePath = "C:/Users/User/Desktop/4th year/4.2/python_server/chromedriver_win32/chromedriver.exe"
-    exePath = "/home/asterisksouls/jiji_webscrapper/chromedriver"
+    exePath = "/usr/local/bin/chromedriver"
     driver = webdriver.Chrome(executable_path=exePath, options=chrome_options)
 
     #fil=""
