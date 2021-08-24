@@ -17,7 +17,7 @@ def jiji(msg_received):
         product=str(msg_received["product"]).replace(" ","%20")
         sort=msg_received["filter"]
         amount=msg_received["amount"]
-        time=msg_received["time"]
+        duration=msg_received["time"]
 
     except KeyError:
         return {"Error":"A key is missing"}
@@ -43,17 +43,17 @@ def jiji(msg_received):
     if not str(amount).isdigit() or int(amount)<=0:
         amount=1
 
-    if time == "day" or "d":
-        time="day"
-    elif time == "hour" or "h":
-        time="hour"
-    elif time == "all" or "a":
-        time=""
+    if duration == "day" or "d":
+        duration="day"
+    elif duration == "hour" or "h":
+        duration="hour"
+    elif duration == "all" or "a":
+        duration=""
     else:
-        time="hour"
+        duration="hour"
 
 
-    driver.get('https://jiji.co.ke/search?query='+product+'&sort='+fil+'&period='+time)
+    driver.get('https://jiji.co.ke/search?query='+product+'&sort='+fil+'&period='+duration)
 
 
     adverts = driver.find_elements_by_class_name("b-list-advert__wrapper")
@@ -66,6 +66,8 @@ def jiji(msg_received):
         driver.find_element_by_css_selector("input[type='text']").send_keys(Keys.PAGE_DOWN)
         adverts = driver.find_elements_by_class_name("b-list-advert__wrapper")
         time.sleep(2)
+
+
         q+=1
 
 
