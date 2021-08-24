@@ -1,6 +1,7 @@
 import flask
 from flask_cors import CORS, cross_origin
 import logging
+from flask import request
 import webscrapper
 
 
@@ -29,6 +30,17 @@ def scrapper():
 def check():
     return "all is well"
 
+@app.route('/scrap', methods=['GET', 'POST'])
+@cross_origin(origin='*')
+def with_param():
+
+    product= str(request.args.get('product'))
+    duration= str(request.args.get('duration'))
+    fil= str(request.args.get('filter'))
+    amount= str(request.args.get('amount'))
+    #print(product+" "+duration+" "+fil+" "+amount)
+
+    return webscrapper.jiji({"product":product,"filter":fil,"amount":amount,"time":duration})
 
 def logga(info):
     gunicorn_logger = logging.getLogger('gunicorn.error')
