@@ -23,8 +23,8 @@ def jiji(msg_received):
         return {"Error":"A key is missing"}
 
 
-    exePath = "C:/Users/User/Desktop/4th year/4.2/python_server/chromedriver_win32/chromedriver.exe"
-    #exePath = "/usr/local/bin/chromedriver"
+    #exePath = "C:/Users/User/Desktop/4th year/4.2/python_server/chromedriver_win32/chromedriver.exe"
+    exePath = "/usr/local/bin/chromedriver"
     driver = webdriver.Chrome(executable_path=exePath, options=chrome_options)
 
     #fil=""
