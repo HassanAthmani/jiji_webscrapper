@@ -8,7 +8,7 @@ import json
 def jiji(msg_received):
 
     chrome_options = Options()
-    #chrome_options.add_argument("--headless")
+    chrome_options.add_argument("--headless")
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("disable-gpu")
 
@@ -22,8 +22,8 @@ def jiji(msg_received):
         return {"Error":"A key is missing"}
 
 
-    exePath = "C:/Users/User/Desktop/4th year/4.2/python_server/chromedriver_win32/chromedriver.exe"
-    #exePath = "/usr/bin/chromedriver"
+    #exePath = "C:/Users/User/Desktop/4th year/4.2/python_server/chromedriver_win32/chromedriver.exe"
+    exePath = "/home/asterisksouls/jiji_webscrapper/chromedriver"
     driver = webdriver.Chrome(executable_path=exePath, options=chrome_options)
 
     #fil=""

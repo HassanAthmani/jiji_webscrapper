@@ -2,8 +2,8 @@ import json
 import urllib.request
 
 
-URL="http://127.0.0.1:5000"
-#URL="http://35.209.228.31:5001/"
+#URL="http://127.0.0.1:5000"
+URL="http://35.209.228.31:5000/"
 req = urllib.request.Request(URL)
 req.add_header('Content-Type', 'application/json; charset=utf-8')
 
