@@ -58,19 +58,17 @@ def jiji(msg_received):
 
     adverts = driver.find_elements_by_class_name("b-list-advert__wrapper")
 
-    if len(adverts)==0:
-        return {"Notification":"product not found"}
+
     #while len(adverts)< 20:
     q=0
     while q < 5:
         driver.find_element_by_css_selector("input[type='text']").send_keys(Keys.PAGE_DOWN)
         adverts = driver.find_elements_by_class_name("b-list-advert__wrapper")
         time.sleep(2)
-
-
         q+=1
 
-
+    if len(adverts)==0:
+        return {"Notification":"product not found"}
 
 
     list = []
